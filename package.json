@@ -1,0 +1,28 @@
+{
+  "name": "e-commerce-project",
+  "version": "1.0.0",
+  "description": "web-phone-ecommerce/\r ├── src/\r │   ├── config/\r │   │   ├── db.js             # Cấu hình kết nối PostgreSQL\r │   │   └── redis.js          # Cấu hình kết nối Redis\r │   ├── controllers/\r │   │   ├── authController.js  # Xử lý Đăng nhập/Đăng ký\r │   │   ├── cartController.js  # Xử lý Giỏ hàng (Logic Redis)\r │   │   ├── orderController.js # Xử lý Đơn hàng & Tạo mã QR\r │   │   └── paymentController.js # Xử lý Webhook từ SePay\r │   ├── middleware/\r │   │   └── auth.js           # Kiểm tra Session Token từ Redis\r │   ├── models/\r │   │   ├── userModel.js      # Định nghĩa bảng Người dùng\r │   │   ├── productModel.js   # Định nghĩa bảng Điện thoại & Tồn kho\r │   │   └── orderModel.js     # Định nghĩa bảng Đơn hàng\r │   ├── routes/\r │   │   └── api.js            # Khai báo các đường dẫn API\r │   └── app.js                # File chạy chính của Node.js\r ├── docker/\r │   └── postgres/\r │       └── init.sql          # Khởi tạo bảng dữ liệu ban đầu\r ├── .env                      # Lưu biến bảo mật (DB Pass, SePay API Key)\r ├── docker-compose.yml        # File điều phối các Container\r ├── Dockerfile                # File đóng gói ứng dụng Node.js\r └── package.json              # Khai báo các thư viện (Express, pg, redis)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thuhang2209/E-commerce-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/thuhang2209/E-commerce-project/issues"
+  },
+  "homepage": "https://github.com/thuhang2209/E-commerce-project#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "pg": "^8.19.0",
+    "prisma": "^7.4.2"
+  }
+}

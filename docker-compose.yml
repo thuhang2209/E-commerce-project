@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  # 1. Cơ sở dữ liệu: Lưu thông tin sản phẩm, user, đơn hàng
+  db:
+    image: postgres:16-alpine
+    container_name: ecommerce_db
+    environment:
+      POSTGRES_USER: ecommerce
+      POSTGRES_PASSWORD: 2209
+      POSTGRES_DB: ecommerce_db
+    volumes:  # volumes: ổ cứng ngoài để lưu dữ liệu lâu dài, tránh mất khi container bị xóa
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  # 2. Redis: Lưu Session đăng nhập và Giỏ hàng tạm thời
+  redis:
+    image: redis:7-alpine
+    container_name: ecommerce_cache
+    ports:
+      - "6379:6379"
+
+  # 3. Node.js App: Code xử lý chính
+  app:
+    build: .
+    container_name: ecommerce_app
+    ports:
+      - "8080:8080"
+    depends_on: # đảm bảo app khởi động sau khi pg và redis đã sẵn sàng
+      - db
+      - redis
+  
+volumes:
+  postgres_data:
+
+
+
+# cách chạy: docker-compose up -d
+# -d: chạy ở chế độ nền (detached mode) để terminal không bị chiếm dụng
+# up: tạo và khởi động các container theo cấu hình trong file docker-compose.yml
